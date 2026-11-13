@@ -63,7 +63,7 @@ void WriteNodes(FILE *file, const Tree_t *tree)
     char *strNode  = tree->value;
 
     if(strNode != NULL)
-        fprintf(file, "\t%lli [label = %s]\n", (long long int)tree, strNode);
+        fprintf(file, "\t%lli [label = \"%s\"]\n", (long long int)tree, strNode);
     WriteNodes(file, tree->left);
     WriteNodes(file, tree->right);
 }
@@ -100,8 +100,6 @@ void CompileDotFile(char *inputFile, char *outputFile)
 
     if (result != 0)
         yaiwarning(0, "Graphviz error!\n");
-
-    printf("Graph generated successfully!\n");
 }
 
 void MkHTMLFileList(char *htmlFileName, char *imageFileName)

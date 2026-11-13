@@ -16,6 +16,7 @@ struct Tree_t
     Tree_elem_t value;
     Tree_t *left;
     Tree_t *right;
+    Tree_t *parent;
 };
 
 enum Child_side

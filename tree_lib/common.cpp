@@ -44,6 +44,8 @@ FILE *safe_fopen(char *fileName, char *mode)
     FILE *pfile = fopen(fileName, mode);
 
     yaiwarning (pfile != NULL, "Pointer to file is NULL");
+    if(pfile == NULL)
+        printf("file_name = %s\n", fileName);
     yaissert(pfile != NULL);
 
     return pfile;
