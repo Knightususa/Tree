@@ -1,0 +1,15 @@
+digraph G {
+splines = curved
+	graph [bgcolor = "#5B8298"]
+	node [shape = record, fontname = "Consolas", style = "rounded, filled", height = 0.5, width = 1, color = "#86BBD8", fontcolor = "#E8F1F5", penwidth = 3]
+	edge [color = "#2F4858", fontcolor = "#2F4858", penwidth = 2, arrowsize = 0.6];
+
+
+	node [fillcolor = "#78a5728b"]
+	1428428969600 [label = "qwe"]
+	1428428968976 [label = "qwe"]
+	1428428969744 [label = "sosal"]
+
+	1428428969600 -> 1428428968976 [color = "#e6a422"];
+	1428428969600 -> 1428428969744 [color = "#e6a422"];
+}
