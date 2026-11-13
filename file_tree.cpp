@@ -49,15 +49,14 @@ Tree_t *ReadTreeFromFile(char *file_name)
     yaissert(nReadBytes == fileSize);
 
     char *stringTextCopy = stringText;
-    Tree_t *tree = ReadNodeFromFile(pfile, NULL, &stringTextCopy);
+    Tree_t *tree = ReadNodeFromFile(NULL, &stringTextCopy);
     fclose(pfile);
 
     return tree;
 }
 
-Tree_t *ReadNodeFromFile(const FILE *pfile, Tree_t *parent, char *(*stringText))
+Tree_t *ReadNodeFromFile(Tree_t *parent, char **stringText)
 {
-    yaissert(pfile);
     yaissert(stringText);
 
     while((*stringText)[0] == ')' || (*stringText)[0] == '(')
@@ -80,23 +79,17 @@ Tree_t *ReadNodeFromFile(const FILE *pfile, Tree_t *parent, char *(*stringText))
     {
         (*stringText) += nscan + 1;
 
-        if(*stringText[0] == ')')
+        if((*stringText)[0] == ')')
             tree->left = NULL;
         else
         {
-            Tree_t *left = ReadNodeFromFile(pfile, tree, stringText);
+            Tree_t *left = ReadNodeFromFile(tree, stringText);
             tree->left = left;
         }
 
         *stringText += 1;
-
-        if(*stringText[0] == ')')
-            tree->right = NULL;
-        else
-        {
-            Tree_t *right = ReadNodeFromFile(pfile, tree, stringText);
-            tree->right = right;
-        }
+        Tree_t *right = ReadNodeFromFile(tree, stringText);
+        tree->right = right;
 
         return tree;
     }

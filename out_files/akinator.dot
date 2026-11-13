@@ -1,15 +1,51 @@
 digraph G {
-splines = curved
+splines = line
 	graph [bgcolor = "#5B8298"]
 	node [shape = record, fontname = "Consolas", style = "rounded, filled", height = 0.5, width = 1, color = "#86BBD8", fontcolor = "#E8F1F5", penwidth = 3]
 	edge [color = "#2F4858", fontcolor = "#2F4858", penwidth = 2, arrowsize = 0.6];
 
 
 	node [fillcolor = "#78a5728b"]
-	1428428969600 [label = "qwe"]
-	1428428968976 [label = "qwe"]
-	1428428969744 [label = "sosal"]
+	1697743591008 [label = "Zivet v kopeike"]
+	1697743591056 [label = "Spit na kovre"]
+	1697743589856 [label = "Dima Bogatski"]
+	1697743591152 [label = "slomal hui"]
+	1697743589424 [label = "wxrdnn"]
+	1697743591248 [label = "Hodit with sad ebalo"]
+	1697743589616 [label = "ded"]
+	1697743589952 [label = "Poleznaya"]
+	1697743589760 [label = "Govorit"]
 
-	1428428969600 -> 1428428968976 [color = "#e6a422"];
-	1428428969600 -> 1428428969744 [color = "#e6a422"];
+	node [fillcolor = "#0000008b"]
+	1697743589664 [label = "local neiroset"]
+
+	node [fillcolor = "#78a5728b"]
+	1697743590864 [label = "Multivarka"]
+	1697743590192 [label = "Vlad"]
+	1697743590000 [label = "Nuhaet dihlofoz"]
+	1697743589472 [label = "have usi"]
+	1697743589568 [label = "tarakanchik"]
+	1697743589712 [label = "Mishania"]
+	1697743590048 [label = "Bald"]
+	1697743590528 [label = "Zac fresko"]
+	1697743590960 [label = "Maksim Zuravel"]
+
+	1697743591008 -> 1697743591056 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743591008 -> 1697743590000 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743591056 -> 1697743589856 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743591056 -> 1697743591152 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743591152 -> 1697743589424 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743591152 -> 1697743591248 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743591248 -> 1697743589616 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743591248 -> 1697743589952 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743589952 -> 1697743589760 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743589952 -> 1697743590192 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743589760 -> 1697743589664 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743589760 -> 1697743590864 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743590000 -> 1697743589472 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743590000 -> 1697743590048 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743589472 -> 1697743589568 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743589472 -> 1697743589712 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1697743590048 -> 1697743590528 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1697743590048 -> 1697743590960 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
 }

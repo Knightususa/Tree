@@ -7,26 +7,22 @@ char *CreateNameToCd(char *filename);
 
 int main()
 {
-    char input_file_name[]  = "akinator_input";
-    char output_file_name[]  = "akinator";
+    char file_name[]  = "akinator";
 
-    char *txt_input_file = CreateName(input_file_name, "txt");
-    char *txt_input_file_cd = CreateNameToCd(txt_input_file);
-
-    char *txt_output_file = CreateName(output_file_name, "txt");
-    char *txt_output_file_cd = CreateNameToCd(txt_output_file);
+    char *txt_file = CreateName(file_name, "txt");
+    char *txt_file_cd = CreateNameToCd(txt_file);
     
-    char *html_file = CreateName(output_file_name, "html");
+    char *html_file = CreateName(file_name, "html");
     char *html_file_cd = CreateNameToCd(html_file);
 
-    char *dot_file = CreateName(output_file_name, "dot");
+    char *dot_file = CreateName(file_name, "dot");
     char *dot_file_cd = CreateNameToCd(dot_file);
 
-    char *svg_file = CreateName(output_file_name, "svg");
+    char *svg_file = CreateName(file_name, "svg");
     char *svg_file_cd = CreateNameToCd(svg_file);
 
     
-    Tree_t *tree_root = ReadTreeFromFile(txt_input_file_cd);
+    Tree_t *tree_root = ReadTreeFromFile(txt_file_cd);
     Tree_t *tree_cur = tree_root;
     while(true)
     {
@@ -35,14 +31,27 @@ int main()
         {
             case add_question:
             {
-                char *question = ParserText("Enter question");
-                char *answer = ParserText("Enter answer");
-                Child_side child_side_que = ParserSide("put prev sheet on");
-                AddQuestion(tree_cur, question, answer, child_side_que);
-                WriteTreeToFile(txt_output_file_cd, tree_cur);
+                if(tree_cur->left != NULL || tree_cur->right != NULL)
+                {
+                    printf(_RED "Cannot add to node with sheet(-s)\n" _RESET);
+                    break;
+                }
+                char *answer = ParserText("Enter person");
+                char *question = ParserText("Enter his characteristic");
+                AddQuestion(tree_cur, question, answer);
+                WriteTreeToFile(txt_file_cd, tree_root);
                 break;
             }
             
+            case edit:
+            {
+                char *question = ParserText("Enter new value");
+                free(tree_cur->value);
+                tree_cur->value = question;
+                WriteTreeToFile(txt_file_cd, tree_root);
+                break;
+            }
+
             case go_left:
                 if(tree_cur->left == NULL)
                     printf(_RED "Left child dead)))\n" _RESET);
@@ -64,6 +73,10 @@ int main()
                     tree_cur = tree_cur->parent;
                 break;
 
+            case go_start:
+                tree_cur = tree_root;
+                break;
+
             case delete_sheet:
             {
                 Child_side child_side_del = ParserSide("delete");
@@ -76,7 +89,7 @@ int main()
                 break;
         }
 
-        MkDotFileTree(dot_file_cd, tree_cur);
+        MkDotFileTree(dot_file_cd, tree_root, tree_cur);
         CompileDotFile(dot_file_cd, svg_file_cd);
         MkHTMLFileList(html_file_cd, svg_file);
         OpenHtml(html_file_cd);

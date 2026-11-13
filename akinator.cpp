@@ -4,9 +4,11 @@ ActionsWithTree Parser()
 {
     char *text = (char *)safe_calloc(str_max_len, sizeof(char));
     printf(_YELLOW  "Enter <add>    to add question on sheat:\n"
-                    "Enter <left>   to go to left child\n"
-                    "Enter <right>  to go to right child\n"
+                    "Enter <edit>   to edit value\n"
+                    "Enter <yes>    to go to left child\n"
+                    "Enter <no>     to go to right child\n"
                     "Enter <back>   to go to parent\n"
+                    "Enter <start   to go to the start\n"
                     "Enter <delete> to delete this sheet(shit)\n\t\t" _RESET);
     scanf("%100s", text);
     printf("\n");
@@ -17,13 +19,19 @@ ActionsWithTree Parser()
         return add_question;
     }
 
-    if(strcmp(text, "left") == 0)
+    if(strcmp(text, "edit") == 0)
+    {
+        free(text);
+        return edit;
+    }
+
+    if(strcmp(text, "yes") == 0)
     {
         free(text);
         return go_left;
     }
 
-    if(strcmp(text, "right") == 0)
+    if(strcmp(text, "no") == 0)
     {
         free(text);
         return go_right;
@@ -33,6 +41,12 @@ ActionsWithTree Parser()
     {
         free(text);
         return go_back;
+    }
+
+    if(strcmp(text, "start") == 0)
+    {
+        free(text);
+        return go_start;
     }
 
     if(strcmp(text, "delete") == 0)
@@ -54,7 +68,8 @@ char *ParserText(const char *text)
 {
     char *input = (char *)safe_calloc(str_max_len, sizeof(char));
     printf(_YELLOW "%s\n" _RESET, text);
-    scanf("%100s", input);
+    getchar();
+    scanf("%100[^\n]", input);
     printf("\n");
     return input;
 }
@@ -88,7 +103,7 @@ Child_side ParserSide(const char *text_to_print)
     }
 }
 
-void AddQuestion(Tree_t *tree, Tree_elem_t question, Tree_elem_t answer, Child_side child_side)
+void AddQuestion(Tree_t *tree, Tree_elem_t question, Tree_elem_t answer)
 {
     yaissert(question);
     yaissert(answer);
@@ -103,23 +118,9 @@ void AddQuestion(Tree_t *tree, Tree_elem_t question, Tree_elem_t answer, Child_s
     yaissert(childPrev);
     yaissert(childAnsw);
 
-    switch(child_side)
-    {
-        case left_child:
-            tree->left = childPrev;
-            tree->right = childAnsw;
-            break;
+    tree->left = childAnsw;
+    tree->right = childPrev;
 
-        case right_child:
-            tree->left = childAnsw;
-            tree->right = childPrev;
-            break;
-        default:
-            printf(_RED "Invalid child side\n" _RESET);
-            free(childAnsw);
-            free(childPrev);
-            return;
-    }
     childPrev->parent = tree;
     childAnsw->parent = tree;
 }

@@ -45,16 +45,36 @@ Ret_err DeleteSheet(Tree_t *tree, Child_side child_side)
     switch (child_side)
     {
         case left_child:
-            yaissert(tree->left);
-            DeleteNode(tree->left);
+        {
+            if(tree->left == NULL)
+            {
+                printf(_RED "Dont have left child\n" _RESET);
+                return Err;
+            }
+
+            Ret_err err = DeleteNode(tree->left);
+            if(err == Err)
+                return Err;
+
             tree->left = NULL;
             break;
+        }
             
         case right_child:
-            yaissert(tree->right);
-            DeleteNode(tree->right);
+        {
+            if(tree->right == NULL)
+            {
+                printf(_RED "Dont have left child\n" _RESET);
+                return Err;
+            }
+
+            Ret_err err = DeleteNode(tree->right);
+            if(err == Err)
+                return Err;
+
             tree->right = NULL;
             break;
+        }
         
         default:
             printf("Invalid child side\n");
@@ -67,8 +87,11 @@ Ret_err DeleteSheet(Tree_t *tree, Child_side child_side)
 Ret_err DeleteNode(Tree_t *node)
 {
     yaissert(node);
-    yaissert(node->left == NULL);
-    yaissert(node->right == NULL);
+    if(node->left != NULL || node->right != NULL)
+    {
+        printf(_RED "Cant delete parent(((\n" _RESET);
+        return Err;
+    }
 
     free(node->value);
     free(node);

@@ -13,7 +13,7 @@ void WriteTreeToFile(char *file_name, const Tree_t *tree);
 void WriteNodeToFile(FILE *pfile, const Tree_t *tree);
 
 Tree_t *ReadTreeFromFile(char *file_name);
-Tree_t *ReadNodeFromFile(const FILE *pfile, Tree_t *parent, char **stringText);
+Tree_t *ReadNodeFromFile(Tree_t *parent, char **stringText);
 
 #endif
 //end ifndef FILE_TREE_H

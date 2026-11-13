@@ -1,6 +1,6 @@
 #include "./graphviz_func.h"
 
-void MkDotFileTree(char *file_name, const Tree_t *tree)
+void MkDotFileTree(char *file_name, const Tree_t *tree_root, const Tree_t *tree_cur)
 {
     yaissert(file_name != NULL);
     //TODO: CheckList
@@ -9,10 +9,10 @@ void MkDotFileTree(char *file_name, const Tree_t *tree)
     FILE *file = safe_fopen(file_name, open_mode);
 
     fprintf(file,   "digraph G {\n"
-                    "splines = curved\n");
+                    "splines = line\n");
 
     WriteGraphSettings(file);
-    WriteTree(file, tree);
+    WriteTree(file, tree_root, tree_cur);
 
     fprintf(file, "}\n");
 
@@ -47,25 +47,33 @@ void WriteGraphSettings(FILE *file)
 
 }
 
-void WriteTree(FILE *file, const Tree_t *tree)
+void WriteTree(FILE *file, const Tree_t *tree_root, const Tree_t *tree_cur)
 {
     fprintf(file, "\n\tnode [fillcolor = \"#78a5728b\"]\n");
-    WriteNodes(file, tree);
+    WriteNodes(file, tree_root, tree_cur);
     fprintf(file, "\n");
     
-    WriteTreeChain(file, tree);
+    WriteTreeChain(file, tree_root);
 }
 
-void WriteNodes(FILE *file, const Tree_t *tree)
+void WriteNodes(FILE *file, const Tree_t *tree, const Tree_t *tree_cur)
 {
     if(tree == NULL)
         return;
     char *strNode  = tree->value;
 
     if(strNode != NULL)
+    {
+        if(tree == tree_cur)
+            fprintf(file, "\n\tnode [fillcolor = \"#0000008b\"]\n");
+
         fprintf(file, "\t%lli [label = \"%s\"]\n", (long long int)tree, strNode);
-    WriteNodes(file, tree->left);
-    WriteNodes(file, tree->right);
+
+        if(tree == tree_cur)
+            fprintf(file, "\n\tnode [fillcolor = \"#78a5728b\"]\n");
+    }
+    WriteNodes(file, tree->left, tree_cur);
+    WriteNodes(file, tree->right, tree_cur);
 }
 
 void WriteTreeChain(FILE *file, const Tree_t *tree)
@@ -74,10 +82,10 @@ void WriteTreeChain(FILE *file, const Tree_t *tree)
         return;
 
     if(tree->left != NULL)
-        fprintf(file, "\t%lli -> %lli [color = \"#e6a422\"];\n", (long long int)tree, (long long int)tree->left);
+        fprintf(file, "\t%lli -> %lli [color = \"#e6a422\", label = \"YES\",  fontcolor = \"#5fff29\"];\n", (long long int)tree, (long long int)tree->left);
 
     if(tree->right != NULL)
-        fprintf(file, "\t%lli -> %lli [color = \"#e6a422\"];\n", (long long int)tree, (long long int)tree->right);
+        fprintf(file, "\t%lli -> %lli [color = \"#e6a422\", label = \"NO\", fontcolor = \"#ff1131\"];\n", (long long int)tree, (long long int)tree->right);
 
     WriteTreeChain(file, tree->left);
     WriteTreeChain(file, tree->right);
