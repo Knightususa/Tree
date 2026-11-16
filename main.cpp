@@ -23,7 +23,7 @@ int main()
 
     if(akinator.is_new_tree)
     {
-        char konst[] = "";
+        char konst[] = "This is root of new tree";
         Tree_t *tree_root = CreateTree(konst);
         akinator.tree_root = tree_root;
         akinator.tree_cur = tree_root;
