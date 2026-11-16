@@ -79,7 +79,7 @@ ActionsWithTree ParserForAction()
 char *ParserText(const char *text)
 {
     char *input = (char *)safe_calloc(str_max_len, sizeof(char));
-    printf(_YELLOW "%s\n" _RESET, text);
+    PrintAndVoice(text);
     getchar();
     scanf("%100[^\n]", input);
     printf("\n");
@@ -151,18 +151,18 @@ void Guessing(Akinator_union *akinator)
     {
         if(akinator->tree_cur->left == NULL && akinator->tree_cur->right == NULL)
         {
-            printf("Is it %s?\n", akinator->tree_cur->value);
+            PrintAndVoice("It is");
             Child_side child_side = ParserSideYN(akinator);
             printf("\n");
             switch(child_side)
             {
                 case left_child:
-                    printf("YOUHUUUU I right!!!\n");
+                    PrintAndVoice("YOUHUUUU I right!!!\n");
                     return;
 
                 case right_child:
                 {
-                    printf("Add your character\n");
+                    PrintAndVoice("Add your character\n");
                     char *answer = ParserText("Enter person");
                     char *question = ParserText("Enter his characteristic");
                     AddQuestion(akinator->tree_cur, question, answer);
@@ -176,7 +176,6 @@ void Guessing(Akinator_union *akinator)
             }
         }
 
-        printf("%s?\n", akinator->tree_cur->value);
         Child_side child_side = ParserSideYN(akinator);
         printf("\n");
         switch(child_side)
@@ -204,8 +203,9 @@ void Guessing(Akinator_union *akinator)
 
 Child_side ParserSideYN(Akinator_union *akinator)
 {
+    PrintAndVoice(akinator->tree_cur->value);
     char text[str_max_len] = "";
-    printf(_YELLOW  "Enter [y/n/e/d] (yes / no / edit value / delete sheet): " _RESET);
+    printf(_YELLOW  "Enter [ y / n / e / d / r] (yes / no / edit value / delete sheet / repeat question): " _RESET);
     scanf("%100s", text);
     printf("\n");
 
@@ -218,7 +218,6 @@ Child_side ParserSideYN(Akinator_union *akinator)
     if(strcmp(text, "e") == 0)
     {
         EditValue(akinator);
-        printf("%s?\n", akinator->tree_cur->value);
         Child_side ret = ParserSideYN(akinator);
         return ret;
     }
@@ -227,7 +226,12 @@ Child_side ParserSideYN(Akinator_union *akinator)
     {
         Child_side child_side_del = ParserSide("delete");
         DeleteSheet(akinator->tree_cur, child_side_del);
-        printf("%s?\n", akinator->tree_cur->value);
+        Child_side ret = ParserSideYN(akinator);
+        return ret;
+    }
+
+    if(strcmp(text, "r") == 0)
+    {
         Child_side ret = ParserSideYN(akinator);
         return ret;
     }
@@ -235,7 +239,6 @@ Child_side ParserSideYN(Akinator_union *akinator)
     else
     {
         printf(_RED "\nInvalid input\n" _RESET);
-        printf("%s?\n", akinator->tree_cur->value);
         Child_side ret = ParserSideYN(akinator);
         return ret;
     }

@@ -4,6 +4,15 @@
 #include "./file_tree.h"
 #include "./graphviz_func.h"
 
+#define PrintAndVoice(str)\
+{\
+    printf(_YELLOW "%s\n" _RESET, str);\
+    char command[512];\
+    snprintf(command, sizeof(command), \
+    "espeak_lib\\espeak-ng.exe -v en -s 20 \"%s\"", str);\
+    system(command);\
+}
+
 enum ActionsWithTree
 {
     action_edit,
