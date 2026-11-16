@@ -64,7 +64,7 @@ Ret_err DeleteSheet(Tree_t *tree, Child_side child_side)
         {
             if(tree->right == NULL)
             {
-                printf(_RED "Dont have left child\n" _RESET);
+                printf(_RED "Dont have right child\n" _RESET);
                 return Err;
             }
 

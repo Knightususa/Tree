@@ -2,98 +2,40 @@
 #include "./graphviz_func.h"
 #include "./akinator.h"
 
+#include <windows.h>
+
+char *GetFileName(Akinator_union *akinator);
+char *OpenTree();
+char **ListFiles(const char *ext);
+char *InputFileName();
+
+void MakeAllNames(Akinator_union *akinator, char *file_name);
 char *CreateName(char *filename, const char *ext);
 char *CreateNameToCd(char *filename);
 
+
+
 int main()
 {
-    char file_name[]  = "akinator";
+    Akinator_union akinator;
+    char *file_name = GetFileName(&akinator);
+    MakeAllNames(&akinator, file_name);
 
-    char *txt_file = CreateName(file_name, "txt");
-    char *txt_file_cd = CreateNameToCd(txt_file);
-    
-    char *html_file = CreateName(file_name, "html");
-    char *html_file_cd = CreateNameToCd(html_file);
-
-    char *dot_file = CreateName(file_name, "dot");
-    char *dot_file_cd = CreateNameToCd(dot_file);
-
-    char *svg_file = CreateName(file_name, "svg");
-    char *svg_file_cd = CreateNameToCd(svg_file);
-
-    
-    Tree_t *tree_root = ReadTreeFromFile(txt_file_cd);
-    Tree_t *tree_cur = tree_root;
-    while(true)
+    if(akinator.is_new_tree)
     {
-        ActionsWithTree action = Parser();
-        switch(action)
-        {
-            case add_question:
-            {
-                if(tree_cur->left != NULL || tree_cur->right != NULL)
-                {
-                    printf(_RED "Cannot add to node with sheet(-s)\n" _RESET);
-                    break;
-                }
-                char *answer = ParserText("Enter person");
-                char *question = ParserText("Enter his characteristic");
-                AddQuestion(tree_cur, question, answer);
-                WriteTreeToFile(txt_file_cd, tree_root);
-                break;
-            }
-            
-            case edit:
-            {
-                char *question = ParserText("Enter new value");
-                free(tree_cur->value);
-                tree_cur->value = question;
-                WriteTreeToFile(txt_file_cd, tree_root);
-                break;
-            }
-
-            case go_left:
-                if(tree_cur->left == NULL)
-                    printf(_RED "Left child dead)))\n" _RESET);
-                else
-                    tree_cur = tree_cur->left;
-                break;
-
-            case go_right:
-                if(tree_cur->right == NULL)
-                    printf(_RED "Right child dead)))\n" _RESET);
-                else
-                    tree_cur = tree_cur->right;
-                break;
-
-            case go_back:
-                if(tree_cur->parent == NULL)
-                    printf(_RED "Parent dead)))\n" _RESET);
-                else
-                    tree_cur = tree_cur->parent;
-                break;
-
-            case go_start:
-                tree_cur = tree_root;
-                break;
-
-            case delete_sheet:
-            {
-                Child_side child_side_del = ParserSide("delete");
-                DeleteSheet(tree_cur, child_side_del);
-                break;
-            }
-
-            default:
-                printf(_RED "Invalid command\n" _RESET);
-                break;
-        }
-
-        MkDotFileTree(dot_file_cd, tree_root, tree_cur);
-        CompileDotFile(dot_file_cd, svg_file_cd);
-        MkHTMLFileList(html_file_cd, svg_file);
-        OpenHtml(html_file_cd);
+        char konst[] = "";
+        Tree_t *tree_root = CreateTree(konst);
+        akinator.tree_root = tree_root;
+        akinator.tree_cur = tree_root;
     }
+
+    else
+    {
+        akinator.tree_root = ReadTreeFromFile(akinator.txt.file_name_cd);
+        akinator.tree_cur = akinator.tree_root;
+    }
+
+    Akinating(&akinator);
 }
 
 
@@ -101,9 +43,171 @@ int main()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+char *GetFileName(Akinator_union *akinator)
+{
+    akinator->is_new_tree = false;
+    while(true)
+    {
+        char text[str_max_len] = "";
+        printf(_YELLOW "Enter [o/m] (open tree / make new tree)\n" _RESET);
+        scanf("%100s", text);
+        printf("\n");
+
+        if(strcmp(text, "o") == 0)
+        {
+            char *file_name = OpenTree();
+
+            if(file_name == NULL)
+                continue;
+
+            char *ext = strstr(file_name, ".txt");
+            *ext = '\0';
+            return file_name;
+        }
+
+        if(strcmp(text, "m") == 0)
+        {
+            char *file_name = InputFileName();
+            akinator->is_new_tree = true;
+            return file_name;
+        }
+
+        else
+            printf(_RED "Invalid input\n" _RESET);
+    }
+}
+
+char *InputFileName()
+{
+    char *file_name = (char *)safe_calloc(str_max_len, sizeof(char));
+    while(true)
+    {
+        printf("Enter tree name\n");
+        int inputN = scanf("%100s", file_name);
+        if(inputN == 1)
+            break;
+        printf(_RED "Invalid input\n" _RESET);
+    }
+    char *ext = strstr(file_name, ".txt");
+    if(ext != NULL)
+        *ext = '\0';
+    return file_name;
+}
+
+char *OpenTree()
+{
+    printf("\t\tAll trees:\n");
+    char **list_names = ListFiles("txt");
+    if(list_names[0] == NULL)
+    {
+        printf("No files in folder");    
+        return NULL;
+    }
+
+    else
+    {
+        while(true)
+        {
+            printf("Enter number of filename\n");
+            int number_filename = 0;
+            int inputN = scanf("%i", &number_filename);
+
+            if(inputN < 1)
+            {
+                printf(_RED "Invalid input\n" _RESET);
+                continue;
+            }
+
+            if(number_filename < 0 || list_names[number_filename] == NULL)
+            {
+                printf(_RED "Invalid number of input\n" _RESET);
+                continue;
+            }
+
+            char *ret = strdup(list_names[number_filename]);
+            int i = 0;
+            while(list_names[i] != NULL)
+                free(list_names[i++]);
+            free(list_names);
+            return ret;
+        }
+    }
+}
+
+char **ListFiles(const char *ext)
+{
+    yaissert(ext != NULL);
+
+    const char dir[] = "./out_files/";
+    char pattern[MAX_PATH];
+    snprintf(pattern, sizeof(pattern), "%s\\*.%s", dir, ext);
+
+    WIN32_FIND_DATAA fd;
+    HANDLE h = FindFirstFileA(pattern, &fd);
+    if (h == INVALID_HANDLE_VALUE)
+    {
+        printf("No files found or error: %lu\n", GetLastError());
+        return NULL;
+    }
+
+    int i = 0;
+    int Nmax = 100;
+    char **list_names = (char **)safe_calloc(Nmax, sizeof(char *));
+    do
+    {
+        if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+        {
+            list_names[i] = strdup(fd.cFileName);
+            printf("%i)\t%s\n", i++, fd.cFileName);
+        }
+
+        if(i >= Nmax)
+        {
+            Nmax *= 2;
+            list_names = (char **)realloc(list_names, Nmax);
+        }
+    }while (FindNextFileA(h, &fd));
+    FindClose(h);
+    printf("\n");
+    return list_names;
+}
+
+void MakeAllNames(Akinator_union *akinator, char *file_name)
+{
+    yaissert(akinator != NULL);
+    yaissert(file_name != NULL);
+
+    akinator->txt.file_name = CreateName(file_name, "txt");
+    akinator->txt.file_name_cd = CreateNameToCd(akinator->txt.file_name);
+    
+    akinator->html.file_name = CreateName(file_name, "html");
+    akinator->html.file_name_cd = CreateNameToCd(akinator->html.file_name);
+
+    akinator->dot.file_name = CreateName(file_name, "dot");
+    akinator->dot.file_name_cd = CreateNameToCd(akinator->dot.file_name);
+
+    akinator->svg.file_name = CreateName(file_name, "svg");
+    akinator->svg.file_name_cd = CreateNameToCd(akinator->svg.file_name);
+}
+
 char *CreateName(char *filename, const char *ext)
 {
     yaissert(filename != NULL);
+    yaissert(ext != NULL);
 
     char *nameOut = (char *)safe_calloc(strlen(filename) + strlen(ext) + 1, sizeof(char));
     strcat(nameOut, filename);

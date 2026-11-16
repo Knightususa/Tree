@@ -6,21 +6,39 @@
 
 enum ActionsWithTree
 {
-    add_question,
-    edit,
-    go_left,
-    go_right,
-    go_back,
-    go_start,
-    delete_sheet
+    action_edit,
+    action_guess,
+    action_delete,
+    action_vizualize
 };
 
-void AddQuestion(Tree_t *tree, Tree_elem_t question, Tree_elem_t answer);
+typedef struct
+{
+    char *file_name;
+    char *file_name_cd;
+}File_names;
 
-ActionsWithTree Parser();
+typedef struct
+{
+    File_names txt;
+    File_names html;
+    File_names dot;
+    File_names svg;
+    Tree_t *tree_root;
+    Tree_t *tree_cur;
+    bool is_new_tree;
+}Akinator_union;
+
+void Akinating(Akinator_union *akinator);
+
+ActionsWithTree ParserForAction();
 char *ParserText(const char *text);
-Child_side ParserSide(const char *text);
+Child_side ParserSide(const char *text_to_print);
+Child_side ParserSideYN(Akinator_union *akinator);
 
+void AddQuestion(Tree_t *tree, Tree_elem_t question, Tree_elem_t answer);
+void Guessing(Akinator_union *akinator);
+void EditValue(Akinator_union *akinator);
 void OpenHtml(const char *file_name);
 
 
