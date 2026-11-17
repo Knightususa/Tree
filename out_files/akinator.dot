@@ -6,66 +6,50 @@ splines = line
 
 
 	node [fillcolor = "#78a5728b"]
-	2193539036832 [label = "Zivet v kopeike"]
-	2193539035488 [label = "Spit na kovre"]
-	2193539036880 [label = "Dima Bogatski"]
-	2193539035632 [label = "slomal leg"]
-	2193539036928 [label = "wxrdnn"]
-	2193539035920 [label = "Hodit with sad ebalo"]
-	2193539036160 [label = "ded"]
-	2193539035536 [label = "Poleznaya"]
-	2193539035728 [label = "Govorit"]
-	2193539035824 [label = "Chelovechishka"]
-	2193539036544 [label = "Moi mentor[Nikolai Skvortsov]"]
-	2193539035584 [label = "local neiroset"]
-	2193539036064 [label = "Ploho pahnet"]
-	2193539035680 [label = "Holodit"]
-	2193539036784 [label = "Holodilnic 316"]
-	2193539036112 [label = "Toilet 3 floor"]
-	2193539036448 [label = "Multivarka"]
-	2193539035392 [label = "Vlad"]
-	2193539037024 [label = "Nuhaet dihlofoz"]
-	2193539035296 [label = "have mustache"]
+	1534605316000 [label = "Live in first obshaga"]
+	1534605317536 [label = "Sleeps on carpet"]
+	1534605317440 [label = "Dima Bogatski"]
+	1534605317584 [label = "Slommal his leg in november"]
+	1534605317392 [label = "wxrdnn"]
+	1534605315856 [label = "Hodit with [sad] ebalo"]
 
 	node [fillcolor = "#0000008b"]
-	2193539036208 [label = "tarakanchik"]
+	1534605317296 [label = "[DET]"]
 
 	node [fillcolor = "#78a5728b"]
-	2193539036352 [label = "Mishania"]
-	2193539036304 [label = "Bald"]
-	2193539036016 [label = "Zac fresko"]
-	2193539035872 [label = "Koshak"]
-	2193539035968 [label = "Mr Penis"]
-	2193539036256 [label = "Nikogo ne ubival"]
-	2193539035776 [label = "Anton Chigur"]
-	2193539036400 [label = "Maksim Zuravel"]
+	1534605316384 [label = "Poleznaya"]
+	1534605317680 [label = "Govorit"]
+	1534605316576 [label = "local neiroset"]
+	1534605316432 [label = "Multivarka"]
+	1534605317776 [label = "Vlad"]
+	1534605315904 [label = "Nuhaet dihlofoz"]
+	1534605316528 [label = "have usi"]
+	1534605317344 [label = "tarakanchik"]
+	1534605315952 [label = "Mishania"]
+	1534605316240 [label = "Bald"]
+	1534605316768 [label = "Zac fresko"]
+	1534605316624 [label = "Teaching matanalisis"]
+	1534605316960 [label = "Barabanchikov"]
+	1534605316096 [label = "Maksim Zuravel"]
 
-	2193539036832 -> 2193539035488 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539036832 -> 2193539037024 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035488 -> 2193539036880 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035488 -> 2193539035632 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035632 -> 2193539036928 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035632 -> 2193539035920 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035920 -> 2193539036160 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035920 -> 2193539035536 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035536 -> 2193539035728 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035536 -> 2193539035392 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035728 -> 2193539035824 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035728 -> 2193539036064 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035824 -> 2193539036544 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035824 -> 2193539035584 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539036064 -> 2193539035680 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539036064 -> 2193539036448 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035680 -> 2193539036784 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035680 -> 2193539036112 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539037024 -> 2193539035296 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539037024 -> 2193539036304 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035296 -> 2193539036208 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035296 -> 2193539036352 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539036304 -> 2193539036016 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539036304 -> 2193539035872 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539035872 -> 2193539035968 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539035872 -> 2193539036256 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	2193539036256 -> 2193539035776 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	2193539036256 -> 2193539036400 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605316000 -> 1534605317536 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605316000 -> 1534605315904 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605317536 -> 1534605317440 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605317536 -> 1534605317584 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605317584 -> 1534605317392 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605317584 -> 1534605315856 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605315856 -> 1534605317296 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605315856 -> 1534605316384 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605316384 -> 1534605317680 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605316384 -> 1534605317776 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605317680 -> 1534605316576 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605317680 -> 1534605316432 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605315904 -> 1534605316528 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605315904 -> 1534605316240 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605316528 -> 1534605317344 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605316528 -> 1534605315952 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605316240 -> 1534605316768 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605316240 -> 1534605316624 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	1534605316624 -> 1534605316960 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	1534605316624 -> 1534605316096 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
 }

@@ -11,6 +11,7 @@ void WriteTreeToFile(char *file_name, const Tree_t *tree)
 
 void WriteNodeToFile(FILE *pfile, const Tree_t *tree)
 {
+    yaissert(pfile);
     yaissert(tree);
 
     fprintf(pfile, "%s", tree->value);
@@ -75,6 +76,7 @@ Tree_t *ReadNodeFromFile(Tree_t *parent, char **stringText)
     }
     else
         return NULL;
+        
     if((*stringText)[nscan] == '(')
     {
         (*stringText) += nscan + 1;
@@ -106,3 +108,4 @@ Tree_t *ReadNodeFromFile(Tree_t *parent, char **stringText)
         return NULL;
     }
 }
+

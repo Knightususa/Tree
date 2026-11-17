@@ -3,6 +3,7 @@
 
 #include "./file_tree.h"
 #include "./graphviz_func.h"
+#include <windows.h>
 
 #define PrintAndVoice(str)\
 {\
@@ -50,6 +51,10 @@ void Guessing(Akinator_union *akinator);
 void EditValue(Akinator_union *akinator);
 void OpenHtml(const char *file_name);
 
+char *GetFileName(Akinator_union *akinator);
+char *ChooseTree();
+char **ListFiles(const char *ext);
+char *InputFileName();
 
 #endif
 //end AKINATOR_H
