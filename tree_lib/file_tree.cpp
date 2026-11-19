@@ -5,7 +5,9 @@ void WriteTreeToFile(char *file_name, const Tree_t *tree)
     char mode[] = "w";
     FILE *pfile = safe_fopen(file_name, mode);
 
+    fprintf(pfile, "(");
     WriteNodeToFile(pfile, tree);
+    fprintf(pfile, ")");
     fclose(pfile);
 }
 
@@ -59,53 +61,42 @@ Tree_t *ReadTreeFromFile(char *file_name)
 Tree_t *ReadNodeFromFile(Tree_t *parent, char **stringText)
 {
     yaissert(stringText);
-
-    while((*stringText)[0] == ')' || (*stringText)[0] == '(')
-        (*stringText)++;
-
-    char *text = (char *)safe_calloc(str_max_len, sizeof(char));
-    int nscan = 0;
-    sscanf((*stringText), "%[^()\r]%n", text, &nscan);
-
-    Tree_t *tree;
-    if(nscan > 0)
+    printf("%s\n", *stringText);
+    if(*stringText[0] == '(')
     {
-        tree = CreateTree(text);
-        if(parent != NULL)
-            tree->parent = parent;
-    }
-    else
-        return NULL;
-        
-    if((*stringText)[nscan] == '(')
-    {
-        (*stringText) += nscan + 1;
+        *stringText += 1;
+        printf("%s\n\n", *stringText);
+        char *text = (char *)safe_calloc(str_max_len, sizeof(char));
+        int nscan = 0;
+        sscanf((*stringText), "%[^()\r]%n", text, &nscan);
 
-        if((*stringText)[0] == ')')
-            tree->left = NULL;
-        else
+        Tree_t *tree;
+        if(nscan > 0)
         {
-            Tree_t *left = ReadNodeFromFile(tree, stringText);
-            tree->left = left;
+            tree = CreateTree(text);
+            if(parent != NULL)
+                tree->parent = parent;
         }
+        else
+            return NULL;
+
+        *stringText += nscan;
+
+        Tree_t *left  = ReadNodeFromFile(tree, stringText);
+        Tree_t *right = ReadNodeFromFile(tree, stringText);
+
+        tree->left = left;
+        tree->right = right;
+        if(left != NULL)
+            left->parent = tree;
+
+        if(right != NULL)
+            right->parent = tree;
 
         *stringText += 1;
-        Tree_t *right = ReadNodeFromFile(tree, stringText);
-        tree->right = right;
-
         return tree;
     }
-
-    else if((*stringText)[nscan] == ')')
-    {
-        (*stringText) += nscan + 1;
-        return tree;
-    }
-
     else
-    {
-        printf(_RED "Invalid input\n" _RESET);
         return NULL;
-    }
 }
 

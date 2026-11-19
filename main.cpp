@@ -1,5 +1,3 @@
-#include "./file_tree.h"
-#include "./graphviz_func.h"
 #include "./akinator.h"
 
 void MakeAllNames(Akinator_union *akinator, char *file_name);
@@ -10,7 +8,7 @@ char *CreateNameToCd(char *filename);
 
 int main()
 {
-    Akinator_union akinator;
+    Akinator_union akinator = {};
     char *file_name = GetFileName(&akinator);
     MakeAllNames(&akinator, file_name);
 
@@ -19,7 +17,7 @@ int main()
         char konst[] = "This is root of new tree";
         Tree_t *tree_root = CreateTree(konst);
         akinator.tree_root = tree_root;
-        akinator.tree_cur = tree_root;
+        akinator.tree_cur = tree_root; 
     }
 
     else

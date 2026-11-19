@@ -1,0 +1,23 @@
+digraph G {
+splines = line
+	graph [bgcolor = "#5B8298"]
+	node [shape = record, fontname = "Consolas", style = "rounded, filled", height = 0.5, width = 1, color = "#86BBD8", fontcolor = "#E8F1F5", penwidth = 3]
+	edge [color = "#2F4858", fontcolor = "#2F4858", penwidth = 2, arrowsize = 0.6];
+
+
+	node [fillcolor = "#78a5728b"]
+	2007355331952 [label = "qw"]
+	2007355331040 [label = "q"]
+
+	node [fillcolor = "#0000008b"]
+	2007355330800 [label = "w"]
+
+	node [fillcolor = "#78a5728b"]
+	2007355332480 [label = "r"]
+	2007355331232 [label = "This is root of new tree"]
+
+	2007355331952 -> 2007355331040 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	2007355331952 -> 2007355330800 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+	2007355330800 -> 2007355332480 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
+	2007355330800 -> 2007355331232 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
+}

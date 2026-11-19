@@ -1,7 +1,7 @@
 #ifndef AKINATOR_H
 #define AKINATOR_H
 
-#include "./file_tree.h"
+#include "./tree_lib/file_tree.h"
 #include "./graphviz_func.h"
 #include <windows.h>
 
@@ -10,7 +10,7 @@
     printf(_YELLOW "%s\n" _RESET, str);\
     char command[512];\
     snprintf(command, sizeof(command), \
-    "espeak_lib\\espeak-ng.exe -v en -s 20 \"%s\"", str);\
+    "espeak_lib\\espeak-ng.exe -v en -s 200 \"%s\"", str);\
     system(command);\
 }
 

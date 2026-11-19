@@ -6,50 +6,5 @@ splines = line
 
 
 	node [fillcolor = "#78a5728b"]
-	1534605316000 [label = "Live in first obshaga"]
-	1534605317536 [label = "Sleeps on carpet"]
-	1534605317440 [label = "Dima Bogatski"]
-	1534605317584 [label = "Slommal his leg in november"]
-	1534605317392 [label = "wxrdnn"]
-	1534605315856 [label = "Hodit with [sad] ebalo"]
 
-	node [fillcolor = "#0000008b"]
-	1534605317296 [label = "[DET]"]
-
-	node [fillcolor = "#78a5728b"]
-	1534605316384 [label = "Poleznaya"]
-	1534605317680 [label = "Govorit"]
-	1534605316576 [label = "local neiroset"]
-	1534605316432 [label = "Multivarka"]
-	1534605317776 [label = "Vlad"]
-	1534605315904 [label = "Nuhaet dihlofoz"]
-	1534605316528 [label = "have usi"]
-	1534605317344 [label = "tarakanchik"]
-	1534605315952 [label = "Mishania"]
-	1534605316240 [label = "Bald"]
-	1534605316768 [label = "Zac fresko"]
-	1534605316624 [label = "Teaching matanalisis"]
-	1534605316960 [label = "Barabanchikov"]
-	1534605316096 [label = "Maksim Zuravel"]
-
-	1534605316000 -> 1534605317536 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605316000 -> 1534605315904 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605317536 -> 1534605317440 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605317536 -> 1534605317584 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605317584 -> 1534605317392 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605317584 -> 1534605315856 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605315856 -> 1534605317296 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605315856 -> 1534605316384 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605316384 -> 1534605317680 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605316384 -> 1534605317776 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605317680 -> 1534605316576 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605317680 -> 1534605316432 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605315904 -> 1534605316528 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605315904 -> 1534605316240 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605316528 -> 1534605317344 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605316528 -> 1534605315952 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605316240 -> 1534605316768 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605316240 -> 1534605316624 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
-	1534605316624 -> 1534605316960 [color = "#e6a422", label = "YES",  fontcolor = "#5fff29"];
-	1534605316624 -> 1534605316096 [color = "#e6a422", label = "NO", fontcolor = "#ff1131"];
 }
